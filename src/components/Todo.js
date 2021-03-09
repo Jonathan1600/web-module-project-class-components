@@ -3,7 +3,7 @@ import React from "react";
 const Todo = (props) => {
   return (
     <div>
-      <h4
+      <p
         style={
           props.todo.completed
             ? { textDecoration: "line-through" }
@@ -11,7 +11,7 @@ const Todo = (props) => {
         }
       >
         {props.todo.name}
-      </h4>
+      </p>
       <button onClick={() => props.handleCompleted(props.todo.id)}>
         {" "}
         {props.todo.completed ? "Not " : ""}Completed

@@ -1,6 +1,9 @@
 import React from "react";
 import TodoList from "./components/TodoList";
 import TodoForm from "./components/TodoForm";
+import "./app.css";
+import "./normalize.css";
+
 class App extends React.Component {
   // you will need a place to store your state in this component.
 
@@ -33,17 +36,19 @@ class App extends React.Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    this.setState({
-      todos: [
-        ...this.state.todos,
-        {
-          name: this.state.input,
-          id: Date.now(),
-          completed: false,
-        },
-      ],
-      input: "",
-    });
+    if (this.state.input.trim() !== "") {
+      this.setState({
+        todos: [
+          ...this.state.todos,
+          {
+            name: this.state.input,
+            id: Date.now(),
+            completed: false,
+          },
+        ],
+        input: "",
+      });
+    }
   };
 
   handleClear = () => {
@@ -54,12 +59,17 @@ class App extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="container" id="main">
+        <nav>
+          <div>ToDo</div>
+        </nav>
         <TodoList
+          className="container"
           todos={this.state.todos}
           handleCompleted={this.handleCompleted}
         />
         <TodoForm
+          className="container"
           change={this.handleChange}
           submit={this.handleSubmit}
           input={this.state.input}
